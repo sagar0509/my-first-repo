@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - CA Practice</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Expense Tracker for CA Practice</h1>
+            <p class="subtitle">Track expenses, GST, and client-wise spending</p>
+        </header>
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="card">
+                <h3>Total Expenses</h3>
+                <p class="amount" id="totalExpenses">₹0.00</p>
+            </div>
+            <div class="card">
+                <h3>Total GST</h3>
+                <p class="amount" id="totalGST">₹0.00</p>
+            </div>
+            <div class="card">
+                <h3>This Month</h3>
+                <p class="amount" id="monthExpenses">₹0.00</p>
+            </div>
+            <div class="card">
+                <h3>Total Entries</h3>
+                <p class="amount" id="totalEntries">0</p>
+            </div>
+        </div>
+
+        <!-- Expense Entry Form -->
+        <div class="form-section">
+            <h2>Add New Expense</h2>
+            <form id="expenseForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Date *</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="Office Rent">Office Rent</option>
+                            <option value="Utilities">Utilities (Electric/Water/Internet)</option>
+                            <option value="Salaries">Salaries & Wages</option>
+                            <option value="Professional Fees">Professional Fees</option>
+                            <option value="Stationery">Stationery & Printing</option>
+                            <option value="Software">Software & Subscriptions</option>
+                            <option value="Travel">Travel & Conveyance</option>
+                            <option value="Communication">Telephone & Communication</option>
+                            <option value="Books">Books & Periodicals</option>
+                            <option value="Marketing">Marketing & Advertisement</option>
+                            <option value="Repairs">Repairs & Maintenance</option>
+                            <option value="Insurance">Insurance</option>
+                            <option value="Legal">Legal & Compliance</option>
+                            <option value="Bank Charges">Bank Charges</option>
+                            <option value="Miscellaneous">Miscellaneous</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="amount">Amount (₹) *</label>
+                        <input type="number" id="amount" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gstRate">GST Rate (%)</label>
+                        <select id="gstRate">
+                            <option value="0">No GST</option>
+                            <option value="5">5%</option>
+                            <option value="12">12%</option>
+                            <option value="18">18%</option>
+                            <option value="28">28%</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="gstType">GST Type</label>
+                        <select id="gstType">
+                            <option value="CGST+SGST">CGST + SGST</option>
+                            <option value="IGST">IGST</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="client">Client/Project</label>
+                        <input type="text" id="client" placeholder="Optional">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="invoiceNumber">Invoice/Bill Number</label>
+                        <input type="text" id="invoiceNumber" placeholder="Optional">
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentMode">Payment Mode</label>
+                        <select id="paymentMode">
+                            <option value="Cash">Cash</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="UPI">UPI</option>
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="Cheque">Cheque</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="3" placeholder="Enter expense details..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Add Expense</button>
+                    <button type="button" class="btn btn-secondary" id="resetBtn">Clear Form</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-section">
+            <h2>Filter Expenses</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="filterCategory">Category</label>
+                    <select id="filterCategory">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="filterClient">Client/Project</label>
+                    <select id="filterClient">
+                        <option value="">All Clients</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="filterMonth">Month</label>
+                    <input type="month" id="filterMonth">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-secondary" id="clearFilters">Clear Filters</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expenses List -->
+        <div class="expenses-section">
+            <div class="section-header">
+                <h2>Expense Records</h2>
+                <div class="actions">
+                    <button class="btn btn-success" id="exportCSV">Export to CSV</button>
+                    <button class="btn btn-danger" id="clearAll">Clear All Data</button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="expensesTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Client/Project</th>
+                            <th>Amount</th>
+                            <th>GST</th>
+                            <th>Total</th>
+                            <th>Invoice#</th>
+                            <th>Payment</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expensesBody">
+                        <tr class="no-data">
+                            <td colspan="10">No expenses recorded. Add your first expense above!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
