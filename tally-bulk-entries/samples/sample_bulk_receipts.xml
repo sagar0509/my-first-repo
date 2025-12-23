@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Sample XML File for Bulk Receipt Import
+
+    Usage: Use this file in the XML Import screen (Bulk Entries → XML Import)
+
+    Instructions:
+    1. Modify bank ledger name to match your company's bank account
+    2. Update party ledger names to existing ledgers in your company
+    3. Adjust dates to current financial year
+    4. Save and use in import screen
+-->
+
+<ENVELOPE>
+    <HEADER>
+        <TALLYREQUEST>Import Data</TALLYREQUEST>
+    </HEADER>
+    <BODY>
+        <IMPORTDATA>
+            <REQUESTDESC>
+                <REPORTNAME>Vouchers</REPORTNAME>
+                <STATICVARIABLES>
+                    <SVCURRENTCOMPANY>Your Company Name</SVCURRENTCOMPANY>
+                </STATICVARIABLES>
+            </REQUESTDESC>
+            <REQUESTDATA>
+
+                <!-- Receipt Entry 1: Cash Receipt -->
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <VOUCHER REMOTEID="" VCHKEY="" VCHTYPE="Receipt" ACTION="Create" OBJVIEW="Accounting Voucher View">
+                        <DATE>20251220</DATE>
+                        <GUID></GUID>
+                        <NARRATION>Payment received for Invoice #INV-2025-001</NARRATION>
+                        <VOUCHERTYPENAME>Receipt</VOUCHERTYPENAME>
+                        <VOUCHERNUMBER>1</VOUCHERNUMBER>
+                        <PARTYLEDGERNAME>Customer ABC Ltd</PARTYLEDGERNAME>
+                        <EFFECTIVEDATE>20251220</EFFECTIVEDATE>
+                        <PERSISTEDVIEW>Accounting Voucher View</PERSISTEDVIEW>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>HDFC Bank Current Account</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>50000.00</AMOUNT>
+                            <BANKALLOCATIONS.LIST>
+                                <DATE>20251220</DATE>
+                                <TRANSACTIONTYPE>Cash</TRANSACTIONTYPE>
+                                <PAYMENTFAVOURING>Customer ABC Ltd</PAYMENTFAVOURING>
+                                <AMOUNT>50000.00</AMOUNT>
+                            </BANKALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>Customer ABC Ltd</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-50000.00</AMOUNT>
+                            <BILLALLOCATIONS.LIST>
+                                <NAME>INV-2025-001</NAME>
+                                <BILLTYPE>New Ref</BILLTYPE>
+                                <AMOUNT>-50000.00</AMOUNT>
+                            </BILLALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+                    </VOUCHER>
+                </TALLYMESSAGE>
+
+                <!-- Receipt Entry 2: NEFT Receipt -->
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <VOUCHER REMOTEID="" VCHKEY="" VCHTYPE="Receipt" ACTION="Create" OBJVIEW="Accounting Voucher View">
+                        <DATE>20251221</DATE>
+                        <GUID></GUID>
+                        <NARRATION>NEFT payment received for Invoice #INV-2025-002 | Txn: NEFT | Inst: NEFT123456789 | Dt: 21-Dec-2025</NARRATION>
+                        <VOUCHERTYPENAME>Receipt</VOUCHERTYPENAME>
+                        <VOUCHERNUMBER>2</VOUCHERNUMBER>
+                        <PARTYLEDGERNAME>Customer XYZ Pvt Ltd</PARTYLEDGERNAME>
+                        <EFFECTIVEDATE>20251221</EFFECTIVEDATE>
+                        <PERSISTEDVIEW>Accounting Voucher View</PERSISTEDVIEW>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>HDFC Bank Current Account</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>125000.00</AMOUNT>
+                            <BANKALLOCATIONS.LIST>
+                                <DATE>20251221</DATE>
+                                <TRANSACTIONTYPE>NEFT</TRANSACTIONTYPE>
+                                <INSTRUMENTNUMBER>NEFT123456789</INSTRUMENTNUMBER>
+                                <INSTRUMENTDATE>20251221</INSTRUMENTDATE>
+                                <PAYMENTFAVOURING>Customer XYZ Pvt Ltd</PAYMENTFAVOURING>
+                                <AMOUNT>125000.00</AMOUNT>
+                            </BANKALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>Customer XYZ Pvt Ltd</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-125000.00</AMOUNT>
+                            <BILLALLOCATIONS.LIST>
+                                <NAME>INV-2025-002</NAME>
+                                <BILLTYPE>New Ref</BILLTYPE>
+                                <AMOUNT>-125000.00</AMOUNT>
+                            </BILLALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+                    </VOUCHER>
+                </TALLYMESSAGE>
+
+                <!-- Receipt Entry 3: UPI Receipt -->
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <VOUCHER REMOTEID="" VCHKEY="" VCHTYPE="Receipt" ACTION="Create" OBJVIEW="Accounting Voucher View">
+                        <DATE>20251222</DATE>
+                        <GUID></GUID>
+                        <NARRATION>UPI payment received for Invoice #INV-2025-003 | Txn: UPI | Inst: 436712345678 | Dt: 22-Dec-2025</NARRATION>
+                        <VOUCHERTYPENAME>Receipt</VOUCHERTYPENAME>
+                        <VOUCHERNUMBER>3</VOUCHERNUMBER>
+                        <PARTYLEDGERNAME>Customer PQR Industries</PARTYLEDGERNAME>
+                        <EFFECTIVEDATE>20251222</EFFECTIVEDATE>
+                        <PERSISTEDVIEW>Accounting Voucher View</PERSISTEDVIEW>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>HDFC Bank Current Account</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>75500.00</AMOUNT>
+                            <BANKALLOCATIONS.LIST>
+                                <DATE>20251222</DATE>
+                                <TRANSACTIONTYPE>UPI</TRANSACTIONTYPE>
+                                <INSTRUMENTNUMBER>436712345678</INSTRUMENTNUMBER>
+                                <INSTRUMENTDATE>20251222</INSTRUMENTDATE>
+                                <PAYMENTFAVOURING>Customer PQR Industries</PAYMENTFAVOURING>
+                                <AMOUNT>75500.00</AMOUNT>
+                            </BANKALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>Customer PQR Industries</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-75500.00</AMOUNT>
+                            <BILLALLOCATIONS.LIST>
+                                <NAME>INV-2025-003</NAME>
+                                <BILLTYPE>New Ref</BILLTYPE>
+                                <AMOUNT>-75500.00</AMOUNT>
+                            </BILLALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+                    </VOUCHER>
+                </TALLYMESSAGE>
+
+                <!-- Receipt Entry 4: Cheque Receipt -->
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <VOUCHER REMOTEID="" VCHKEY="" VCHTYPE="Receipt" ACTION="Create" OBJVIEW="Accounting Voucher View">
+                        <DATE>20251223</DATE>
+                        <GUID></GUID>
+                        <NARRATION>Cheque payment received for Invoice #INV-2025-004 | Txn: Cheque | Inst: 456123 | Dt: 23-Dec-2025</NARRATION>
+                        <VOUCHERTYPENAME>Receipt</VOUCHERTYPENAME>
+                        <VOUCHERNUMBER>4</VOUCHERNUMBER>
+                        <PARTYLEDGERNAME>Customer LMN Enterprises</PARTYLEDGERNAME>
+                        <EFFECTIVEDATE>20251223</EFFECTIVEDATE>
+                        <PERSISTEDVIEW>Accounting Voucher View</PERSISTEDVIEW>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>HDFC Bank Current Account</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>89750.00</AMOUNT>
+                            <BANKALLOCATIONS.LIST>
+                                <DATE>20251223</DATE>
+                                <TRANSACTIONTYPE>Cheque</TRANSACTIONTYPE>
+                                <INSTRUMENTNUMBER>456123</INSTRUMENTNUMBER>
+                                <INSTRUMENTDATE>20251223</INSTRUMENTDATE>
+                                <PAYMENTFAVOURING>Customer LMN Enterprises</PAYMENTFAVOURING>
+                                <AMOUNT>89750.00</AMOUNT>
+                            </BANKALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>Customer LMN Enterprises</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-89750.00</AMOUNT>
+                            <BILLALLOCATIONS.LIST>
+                                <NAME>INV-2025-004</NAME>
+                                <BILLTYPE>New Ref</BILLTYPE>
+                                <AMOUNT>-89750.00</AMOUNT>
+                            </BILLALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+                    </VOUCHER>
+                </TALLYMESSAGE>
+
+                <!-- Receipt Entry 5: RTGS Receipt -->
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <VOUCHER REMOTEID="" VCHKEY="" VCHTYPE="Receipt" ACTION="Create" OBJVIEW="Accounting Voucher View">
+                        <DATE>20251223</DATE>
+                        <GUID></GUID>
+                        <NARRATION>RTGS payment received for Invoice #INV-2025-005 | Txn: RTGS | Inst: RTGS987654321 | Dt: 23-Dec-2025</NARRATION>
+                        <VOUCHERTYPENAME>Receipt</VOUCHERTYPENAME>
+                        <VOUCHERNUMBER>5</VOUCHERNUMBER>
+                        <PARTYLEDGERNAME>Customer STU Corporation</PARTYLEDGERNAME>
+                        <EFFECTIVEDATE>20251223</EFFECTIVEDATE>
+                        <PERSISTEDVIEW>Accounting Voucher View</PERSISTEDVIEW>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>HDFC Bank Current Account</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>250000.00</AMOUNT>
+                            <BANKALLOCATIONS.LIST>
+                                <DATE>20251223</DATE>
+                                <TRANSACTIONTYPE>RTGS</TRANSACTIONTYPE>
+                                <INSTRUMENTNUMBER>RTGS987654321</INSTRUMENTNUMBER>
+                                <INSTRUMENTDATE>20251223</INSTRUMENTDATE>
+                                <PAYMENTFAVOURING>Customer STU Corporation</PAYMENTFAVOURING>
+                                <AMOUNT>250000.00</AMOUNT>
+                            </BANKALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>Customer STU Corporation</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-250000.00</AMOUNT>
+                            <BILLALLOCATIONS.LIST>
+                                <NAME>INV-2025-005</NAME>
+                                <BILLTYPE>New Ref</BILLTYPE>
+                                <AMOUNT>-250000.00</AMOUNT>
+                            </BILLALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+                    </VOUCHER>
+                </TALLYMESSAGE>
+
+            </REQUESTDATA>
+        </IMPORTDATA>
+    </BODY>
+</ENVELOPE>

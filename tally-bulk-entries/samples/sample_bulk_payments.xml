@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Sample XML File for Bulk Payment Import
+
+    Usage: Use this file in the XML Import screen (Bulk Entries → XML Import)
+
+    Instructions:
+    1. Modify bank ledger name to match your company's bank account
+    2. Update party/expense ledger names to existing ledgers in your company
+    3. Adjust dates to current financial year
+    4. Save and use in import screen
+-->
+
+<ENVELOPE>
+    <HEADER>
+        <TALLYREQUEST>Import Data</TALLYREQUEST>
+    </HEADER>
+    <BODY>
+        <IMPORTDATA>
+            <REQUESTDESC>
+                <REPORTNAME>Vouchers</REPORTNAME>
+                <STATICVARIABLES>
+                    <SVCURRENTCOMPANY>Your Company Name</SVCURRENTCOMPANY>
+                </STATICVARIABLES>
+            </REQUESTDESC>
+            <REQUESTDATA>
+
+                <!-- Payment Entry 1: Cash Payment for Supplier -->
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <VOUCHER REMOTEID="" VCHKEY="" VCHTYPE="Payment" ACTION="Create" OBJVIEW="Accounting Voucher View">
+                        <DATE>20251220</DATE>
+                        <GUID></GUID>
+                        <NARRATION>Payment made for Purchase Invoice #PUR-2025-101</NARRATION>
+                        <VOUCHERTYPENAME>Payment</VOUCHERTYPENAME>
+                        <VOUCHERNUMBER>1</VOUCHERNUMBER>
+                        <PARTYLEDGERNAME>Supplier Goods Pvt Ltd</PARTYLEDGERNAME>
+                        <EFFECTIVEDATE>20251220</EFFECTIVEDATE>
+                        <PERSISTEDVIEW>Accounting Voucher View</PERSISTEDVIEW>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>Supplier Goods Pvt Ltd</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>35000.00</AMOUNT>
+                            <BILLALLOCATIONS.LIST>
+                                <NAME>PUR-2025-101</NAME>
+                                <BILLTYPE>Agst Ref</BILLTYPE>
+                                <AMOUNT>35000.00</AMOUNT>
+                            </BILLALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>HDFC Bank Current Account</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-35000.00</AMOUNT>
+                            <BANKALLOCATIONS.LIST>
+                                <DATE>20251220</DATE>
+                                <TRANSACTIONTYPE>Cash</TRANSACTIONTYPE>
+                                <PAYMENTFAVOURING>Supplier Goods Pvt Ltd</PAYMENTFAVOURING>
+                                <AMOUNT>-35000.00</AMOUNT>
+                            </BANKALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+                    </VOUCHER>
+                </TALLYMESSAGE>
+
+                <!-- Payment Entry 2: NEFT Payment for Supplier -->
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <VOUCHER REMOTEID="" VCHKEY="" VCHTYPE="Payment" ACTION="Create" OBJVIEW="Accounting Voucher View">
+                        <DATE>20251221</DATE>
+                        <GUID></GUID>
+                        <NARRATION>NEFT payment for Purchase Invoice #PUR-2025-102 | Txn: NEFT | Inst: NEFT555666777 | Dt: 21-Dec-2025</NARRATION>
+                        <VOUCHERTYPENAME>Payment</VOUCHERTYPENAME>
+                        <VOUCHERNUMBER>2</VOUCHERNUMBER>
+                        <PARTYLEDGERNAME>Supplier Materials Ltd</PARTYLEDGERNAME>
+                        <EFFECTIVEDATE>20251221</EFFECTIVEDATE>
+                        <PERSISTEDVIEW>Accounting Voucher View</PERSISTEDVIEW>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>Supplier Materials Ltd</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>95000.00</AMOUNT>
+                            <BILLALLOCATIONS.LIST>
+                                <NAME>PUR-2025-102</NAME>
+                                <BILLTYPE>Agst Ref</BILLTYPE>
+                                <AMOUNT>95000.00</AMOUNT>
+                            </BILLALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>HDFC Bank Current Account</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-95000.00</AMOUNT>
+                            <BANKALLOCATIONS.LIST>
+                                <DATE>20251221</DATE>
+                                <TRANSACTIONTYPE>NEFT</TRANSACTIONTYPE>
+                                <INSTRUMENTNUMBER>NEFT555666777</INSTRUMENTNUMBER>
+                                <INSTRUMENTDATE>20251221</INSTRUMENTDATE>
+                                <PAYMENTFAVOURING>Supplier Materials Ltd</PAYMENTFAVOURING>
+                                <AMOUNT>-95000.00</AMOUNT>
+                            </BANKALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+                    </VOUCHER>
+                </TALLYMESSAGE>
+
+                <!-- Payment Entry 3: Cheque Payment for Expense -->
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <VOUCHER REMOTEID="" VCHKEY="" VCHTYPE="Payment" ACTION="Create" OBJVIEW="Accounting Voucher View">
+                        <DATE>20251222</DATE>
+                        <GUID></GUID>
+                        <NARRATION>Office rent payment for December 2025 | Txn: Cheque | Inst: 789456 | Dt: 22-Dec-2025</NARRATION>
+                        <VOUCHERTYPENAME>Payment</VOUCHERTYPENAME>
+                        <VOUCHERNUMBER>3</VOUCHERNUMBER>
+                        <PARTYLEDGERNAME>Rent Expense</PARTYLEDGERNAME>
+                        <EFFECTIVEDATE>20251222</EFFECTIVEDATE>
+                        <PERSISTEDVIEW>Accounting Voucher View</PERSISTEDVIEW>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>Rent Expense</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>45000.00</AMOUNT>
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>HDFC Bank Current Account</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-45000.00</AMOUNT>
+                            <BANKALLOCATIONS.LIST>
+                                <DATE>20251222</DATE>
+                                <TRANSACTIONTYPE>Cheque</TRANSACTIONTYPE>
+                                <INSTRUMENTNUMBER>789456</INSTRUMENTNUMBER>
+                                <INSTRUMENTDATE>20251222</INSTRUMENTDATE>
+                                <PAYMENTFAVOURING>Office Landlord</PAYMENTFAVOURING>
+                                <AMOUNT>-45000.00</AMOUNT>
+                            </BANKALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+                    </VOUCHER>
+                </TALLYMESSAGE>
+
+                <!-- Payment Entry 4: UPI Payment for Supplier -->
+                <TALLYMESSAGE xmlns:UDF="TallyUDF">
+                    <VOUCHER REMOTEID="" VCHKEY="" VCHTYPE="Payment" ACTION="Create" OBJVIEW="Accounting Voucher View">
+                        <DATE>20251223</DATE>
+                        <GUID></GUID>
+                        <NARRATION>UPI payment for Purchase Invoice #PUR-2025-103 | Txn: UPI | Inst: 998877665544 | Dt: 23-Dec-2025</NARRATION>
+                        <VOUCHERTYPENAME>Payment</VOUCHERTYPENAME>
+                        <VOUCHERNUMBER>4</VOUCHERNUMBER>
+                        <PARTYLEDGERNAME>Supplier Equipment Co</PARTYLEDGERNAME>
+                        <EFFECTIVEDATE>20251223</EFFECTIVEDATE>
+                        <PERSISTEDVIEW>Accounting Voucher View</PERSISTEDVIEW>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>Supplier Equipment Co</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+                            <AMOUNT>18500.00</AMOUNT>
+                            <BILLALLOCATIONS.LIST>
+                                <NAME>PUR-2025-103</NAME>
+                                <BILLTYPE>Agst Ref</BILLTYPE>
+                                <AMOUNT>18500.00</AMOUNT>
+                            </BILLALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+
+                        <ALLLEDGERENTRIES.LIST>
+                            <LEDGERNAME>HDFC Bank Current Account</LEDGERNAME>
+                            <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+                            <AMOUNT>-18500.00</AMOUNT>
+                            <BANKALLOCATIONS.LIST>
+                                <DATE>20251223</DATE>
+                                <TRANSACTIONTYPE>UPI</TRANSACTIONTYPE>
+                                <INSTRUMENTNUMBER>998877665544</INSTRUMENTNUMBER>
+                                <INSTRUMENTDATE>20251223</INSTRUMENTDATE>
+                                <PAYMENTFAVOURING>Supplier Equipment Co</PAYMENTFAVOURING>
+                                <AMOUNT>-18500.00</AMOUNT>
+                            </BANKALLOCATIONS.LIST>
+                        </ALLLEDGERENTRIES.LIST>
+                    </VOUCHER>
+                </TALLYMESSAGE>
+
+            </REQUESTDATA>
+        </IMPORTDATA>
+    </BODY>
+</ENVELOPE>
