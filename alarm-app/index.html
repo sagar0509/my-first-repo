@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Alarm Clock</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏰</text></svg>">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <h1>⏰ Alarm Clock</h1>
+            <div class="current-time" id="currentTime"></div>
+        </header>
+
+        <!-- Add Alarm Section -->
+        <section class="add-alarm-section">
+            <h2>Set New Alarm</h2>
+            <div class="time-input-container">
+                <input type="time" id="alarmTimeInput" required>
+                <input type="text" id="alarmLabelInput" placeholder="Alarm label (optional)" maxlength="30">
+            </div>
+            <div class="alarm-options">
+                <label class="option-item">
+                    <input type="checkbox" id="vibrateOption" checked>
+                    <span>Vibrate</span>
+                </label>
+                <label class="option-item">
+                    <input type="checkbox" id="soundOption" checked>
+                    <span>Sound</span>
+                </label>
+            </div>
+            <button id="addAlarmBtn" class="btn btn-primary">Add Alarm</button>
+        </section>
+
+        <!-- Alarms List -->
+        <section class="alarms-section">
+            <h2>My Alarms</h2>
+            <div id="alarmsList" class="alarms-list">
+                <p class="no-alarms">No alarms set. Add one above! 👆</p>
+            </div>
+        </section>
+
+        <!-- Active Alarm Modal -->
+        <div id="alarmModal" class="alarm-modal hidden">
+            <div class="alarm-modal-content">
+                <div class="alarm-icon">⏰</div>
+                <h2 id="modalAlarmLabel">Alarm</h2>
+                <div class="modal-time" id="modalTime"></div>
+                <div class="modal-buttons">
+                    <button id="snoozeBtn" class="btn btn-warning">Snooze (5 min)</button>
+                    <button id="dismissBtn" class="btn btn-danger">Dismiss</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>💡 Tip: Add to home screen for best experience</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
