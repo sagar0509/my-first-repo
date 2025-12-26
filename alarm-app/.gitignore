@@ -1,8 +1,5 @@
 node_modules/
-android/app/build/
-android/build/
-android/.gradle/
-android/app/.cxx/
+android/
 *.apk
 *.aab
 .DS_Store
