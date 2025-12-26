@@ -1,0 +1,21 @@
+{
+  "name": "alarm-app",
+  "version": "1.0.0",
+  "description": "A mobile-friendly Progressive Web App (PWA) alarm clock that works on your phone.",
+  "main": "app.js",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "sync": "npx cap sync android",
+    "build": "npx cap copy android && cd android && ./gradlew assembleDebug",
+    "open:android": "npx cap open android",
+    "prepare": "cp index.html app.js styles.css manifest.json sw.js www/"
+  },
+  "keywords": ["alarm", "pwa", "mobile", "android"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/core": "^8.0.0"
+  }
+}

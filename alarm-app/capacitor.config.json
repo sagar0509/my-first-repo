@@ -1,0 +1,9 @@
+{
+  "appId": "com.alarmapp.mobile",
+  "appName": "Alarm Clock",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "android": {
+    "allowMixedContent": true
+  }
+}
